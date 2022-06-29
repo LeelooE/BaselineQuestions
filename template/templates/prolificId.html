@@ -1,0 +1,19 @@
+<div>
+    <div id="pIDLabel">
+        <label for="name">Please input your Prolific ID here:</label>
+        <input type="text" id="prolificID" name="prolificID" required>
+    </div>
+    <div>
+        <div id="pSubmit">
+        <button class="submit" onclick="pSubmit()">Submit</button>
+    </div>
+    <div id="pNext">
+        <div id="btn-next-page"></div>
+    </div>
+</div>
+<script>
+    function pSubmit () {
+        document.getElementById("pSubmit").style.visibility='hidden'
+        document.getElementById("pNext").style.visibility='visible'
+    }
+</script>

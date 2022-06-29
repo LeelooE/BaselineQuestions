@@ -1,0 +1,28 @@
+html, body {
+  font: 14px Times;
+  border: 5px groove gray;
+  padding: 10px;
+}
+h1 {
+  font-size: 36px;
+  text-align: center;
+}
+h2 {
+  font-size: 18px;
+}
+#image-box {
+  width: auto;
+}
+#image-options {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  column-gap: 10px;
+  grid-template-rows: 50% 50%;
+  row-gap: 10px;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}

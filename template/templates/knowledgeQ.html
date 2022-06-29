@@ -1,0 +1,89 @@
+<!-- Template for knowledgeQ -->
+<html>
+  <head></head>
+  <body>
+    <div id="litw-knowledgeQ-survey">
+      <h2 id='directions'>
+        <span data-i18n="litw-knowledgeQ-prompt"></span>
+        <span> "{{pageTitle}}"?</span>
+      </h2>
+      <div id="knowledge">
+        <div id="litw-knowledgeQ-likert1">
+            <input type='radio' name='knowledge' id='knowledge_1' value='1' onclick="selected()">
+            <label for='litw-knowledgeQ-likert1' data-i18n="litw-knowledgeQ-likert1"></label>
+        </div>
+        <div id="litw-knowledgeQ-likert2">
+            <input type='radio' name='knowledge' id='knowledge_2' value='2' onclick="selected()">
+            <label for='litw-knowledgeQ-likert2' data-i18n="litw-knowledgeQ-likert2"></label>
+        </div>
+        <div id="litw-knowledgeQ-likert3">
+            <input type='radio' name='knowledge' id='knowledge_3' value='3' onclick="selected()">
+            <label for='litw-knowledgeQ-likert3' data-i18n="litw-knowledgeQ-likert3"></label>
+        </div>
+        <div id="litw-knowledgeQ-likert4">
+            <input type='radio' name='knowledge' id='knowledge_4' value='4' onclick="selected()">
+            <label for='litw-knowledgeQ-likert4' data-i18n="litw-knowledgeQ-likert4"></label>
+        </div>
+        <div id="litw-knowledgeQ-likert5">
+            <input type='radio' name='knowledge' id='knowledge_5' value='5' onclick="selected()">
+            <label for='litw-knowledgeQ-likert5' data-i18n="litw-knowledgeQ-likert5"></label>
+        </div>
+      </div>
+      <div>
+        <div id="submit">
+        <button class="submit" onclick="submit()">Submit</button>
+      </div>
+      </div>
+      <div id="responces">
+        <p data-i18n="litw-knowledgeQResponse1" id="knowledgeQResponse1"></p>
+        <p data-i18n="litw-knowledgeQResponse2" id="knowledgeQResponse2"></p>
+        <p data-i18n="litw-knowledgeQResponse3" id="knowledgeQResponse3"></p>
+        <p data-i18n="litw-knowledgeQResponse4" id="knowledgeQResponse4"></p>
+        <p data-i18n="litw-knowledgeQResponse5" id="knowledgeQResponse5"></p>
+        <p id="knowledgeQWarning">
+          On the next page, you’ll see a Wikipedia article. Please read it fully. 
+          We will ask you about your knowledge of this topic afterwards. :)
+        </p>
+      </div>
+    </div>
+    <div>
+      <div id="next">
+        <div id="btn-next-page"></div>
+      </div>
+    </div>
+    <script>
+      function selected() {
+        document.getElementById("submit").style.visibility='visible'
+      }
+      function submit () {
+        document.getElementById("submit").style.visibility='hidden'
+        if (document.getElementById('knowledge_1').checked) {
+          document.getElementById("knowledgeQResponse1").style.display='block'
+          document.getElementById("knowledgeQResponse1").style.visibility='visible'
+        } else if (document.getElementById('knowledge_2').checked) {
+          document.getElementById("knowledgeQResponse2").style.display='block'
+          document.getElementById("knowledgeQResponse2").style.visibility='visible'
+        } else if (document.getElementById('knowledge_3').checked) {
+          document.getElementById("knowledgeQResponse3").style.display='block'
+          document.getElementById("knowledgeQResponse3").style.visibility='visible'
+        } else if (document.getElementById('knowledge_4').checked) {
+          document.getElementById("knowledgeQResponse4").style.display='block'
+          document.getElementById("knowledgeQResponse4").style.visibility='visible'
+        } else {
+          document.getElementById("knowledgeQResponse5").style.display='block'
+          document.getElementById("knowledgeQResponse5").style.visibility='visible'
+        }
+        document.getElementById("knowledgeQWarning").style.display='block'
+        document.getElementById("knowledgeQWarning").style.visibility='visible'
+        $("#knowledge_1").attr("disabled", true);
+        $("#knowledge_2").attr("disabled", true);
+        $("#knowledge_3").attr("disabled", true);
+        $("#knowledge_4").attr("disabled", true);
+        $("#knowledge_5").attr("disabled", true);
+        document.getElementById("next").style.visibility='visible'
+      }
+      $(document).ready(function () {
+      });
+    </script>
+  </body>
+</html>

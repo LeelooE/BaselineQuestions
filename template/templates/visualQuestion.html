@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/9c8fb83eb2.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h2>
+            <span><strong>{{pageTitle}}</strong></span>
+        </h2>
+        <h2 id='directions'>
+            <span>{{visualQ}}</span>
+            <span>Once you click on an option, you won't be able to change your answer.</span>
+        </h2>
+        <div id="visualQ" class={{rightAnswer}}>
+            <div>
+                <input type='radio' name='visual' id='visual_1' value='1' class='imageRadio' onclick="visualSelected()">
+                <label class='imageLabel' for='visual_1' id='visualLabel1'>{{visual1}}</label>
+                <i id='checkVisual1' class="fas fa-check"></i>
+                <i id='timesVisual1' class="fas fa-times"></i>
+                <label id='correctVisual1'>Correct</label>
+                <label id='incorrectVisual1'>Incorrect</label>
+            </div>
+            <div>
+                <input type='radio' name='visual' id='visual_2' value='2' class='imageRadio' onclick="visualSelected()">
+                <label class='imageLabel' for='visual_2' id='visualLabel2'>{{visual2}}</label>
+                <i id='checkVisual2' class="fas fa-check"></i>
+                <i id='timesVisual2' class="fas fa-times"></i>
+                <label id='correctVisual2'>Correct</label>
+                <label id='incorrectVisual2'>Incorrect</label>
+            </div>
+            <div>
+                <input type='radio' name='visual' id='visual_3' value='3' class='imageRadio' onclick="visualSelected()">
+                <label class='imageLabel' for='visual_3' id='visualLabel3'>{{visual3}}</label>
+                <i id='checkVisual3' class="fas fa-check"></i>
+                <i id='timesVisual3' class="fas fa-times"></i>
+                <label id='correctVisual3'>Correct</label>
+                <label id='incorrectVisual3'>Incorrect</label>
+            </div>
+            <div>
+                <input type='radio' name='visual' id='visual_4' value='4' class='imageRadio' onclick="visualSelected()">
+                <label class='imageLabel' for='visual_4' id='visualLabel4'>{{visual4}}</label>
+                <i id='checkVisual4' class="fas fa-check"></i>
+                <i id='timesVisual4' class="fas fa-times"></i>
+                <label id='correctVisual4'>Correct</label>
+                <label id='incorrectVisual4'>Incorrect</label>
+            </div>
+        </div>
+        <div id="nextVisual">
+            <div id="btn-next-page"></div>
+        </div>
+        <script>
+            function visualSelected() {
+                var classOfDiv = parseInt(document.getElementById("visualQ").className);
+                var labelOne = document.getElementById('visualLabel1').textContent
+                var labelTwo = document.getElementById('visualLabel2').textContent
+                var labelThree = document.getElementById('visualLabel3').textContent
+                var labelFour = document.getElementById('visualLabel4').textContent
+                var correctLabelId = ""
+                var correctIconId = ""
+                if(0 == classOfDiv){
+                    correctLabelId = 'visualLabel1'
+                    correctIconId = 'Visual1'
+                } else if(1 == classOfDiv) {
+                    correctLabelId = 'visualLabel2'
+                    correctIconId = 'Visual2'
+                } else if(2 == classOfDiv) {
+                    correctLabelId = 'visualLabel3'
+                    correctIconId = 'Visual3'
+                } else {
+                    correctLabelId = 'visualLabel4'
+                    correctIconId = 'Visual4'
+                }
+                var audioIncorrect = new Audio('audio/incorrect.wav');
+                var audioCorrect = new Audio('audio/correct.wav');
+                
+                if (document.getElementById('visual_1').checked) {
+                    if (0 != classOfDiv) {
+                        audioIncorrect.play();
+                        styleWrongAnswer('visualLabel1', 'Visual1')
+                    } else {
+                        audioCorrect.play();
+                    } 
+                } else if(document.getElementById('visual_2').checked) {
+                    if (1 != classOfDiv) {
+                        audioIncorrect.play();
+                        styleWrongAnswer('visualLabel2', 'Visual2')
+                    } else {
+                        audioCorrect.play();
+                    } 
+                } else if(document.getElementById('visual_3').checked) {
+                    if (2 != classOfDiv) {
+                        audioIncorrect.play();
+                        styleWrongAnswer('visualLabel3', 'Visual3')
+                    } else {
+                        audioCorrect.play();
+                    }
+                } else {
+                    if (3 != classOfDiv) {
+                        audioIncorrect.play();
+                        styleWrongAnswer('visualLabel4', 'Visual4')
+                    } else {
+                        audioCorrect.play();
+                    }
+                }
+                $("#visual_1").attr("disabled", true);
+                $("#visual_2").attr("disabled", true);
+                $("#visual_3").attr("disabled", true);
+                $("#visual_4").attr("disabled", true);
+                styleCorrectAnswer(correctLabelId, correctIconId)
+                document.getElementById("nextVisual").style.visibility='visible'
+            }
+            function styleCorrectAnswer(labelId, iconId) {
+                var label = document.getElementById(labelId)
+                var icon = document.getElementById('check' + iconId)
+                var text = document.getElementById('correct' + iconId)
+                label.style.border = '3px solid lightgreen'
+                icon.style.display = 'inline'
+                text.style.display = 'inline'
+            }
+            function styleWrongAnswer(labelId, iconId) {
+                var label = document.getElementById(labelId)
+                var icon = document.getElementById('times' + iconId)
+                var text = document.getElementById('incorrect' + iconId)
+                label.style.border = '3px solid lightcoral'
+                icon.style.display = 'inline'
+                text.style.display = 'inline'
+            }
+            $(document).ready(function () {
+                var third = document.getElementById("visualLabel3").innerHTML
+                var fourth = document.getElementById("visualLabel4").innerHTML
+                if (third.length < 1) {
+                    document.getElementById("visualLabel3").style.display = 'none'
+                    document.getElementById("visualLabel4").style.display = 'none'
+                }
+            });
+        </script>
+    </body>
+</html>

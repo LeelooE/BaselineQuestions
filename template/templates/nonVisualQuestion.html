@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/9c8fb83eb2.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h2>
+            <span><strong>{{pageTitle}}</strong></span>
+        </h2>
+        <h2 id='directions'>
+            <span>{{nonVisualQ}}</span>
+            <span>Once you click on an option, you won't be able to change your answer.</span>
+        </h2>
+        <div id="nonVisualQ" class={{rightAnswer}}>
+            <div>
+                <input type='radio' name='nonVisual' id='nonVisual_1' value='1' class='imageRadio' onclick="nonVisualSelected()">
+                <label class='imageLabel' for='nonVisual_1' id='nonVisualLabel1'>{{nonVisual1}}</label>
+                <i id='checkNonVisual1' class="fas fa-check"></i>
+                <i id='timesNonVisual1' class="fas fa-times"></i>
+                <label id='correctNonVisual1'>Correct</label>
+                <label id='incorrectNonVisual1'>Incorrect</label>
+            </div>
+            <div>
+                <input type='radio' name='nonVisual' id='nonVisual_2' value='2' class='imageRadio' onclick="nonVisualSelected()">
+                <label class='imageLabel' for='nonVisual_2' id='nonVisualLabel2'>{{nonVisual2}}</label>
+                <i id='checkNonVisual2' class="fas fa-check"></i>
+                <i id='timesNonVisual2' class="fas fa-times"></i>
+                <label id='correctNonVisual2'>Correct</label>
+                <label id='incorrectNonVisual2'>Incorrect</label>
+            </div>
+            <div>
+                <input type='radio' name='nonVisual' id='nonVisual_3' value='3' class='imageRadio' onclick="nonVisualSelected()">
+                <label class='imageLabel' for='nonVisual_3' id='nonVisualLabel3'>{{nonVisual3}}</label>
+                <i id='checkNonVisual3' class="fas fa-check"></i>
+                <i id='timesNonVisual3' class="fas fa-times"></i>
+                <label id='correctNonVisual3'>Correct</label>
+                <label id='incorrectNonVisual3'>Incorrect</label>
+            </div>
+            <div>
+                <input type='radio' name='nonVisual' id='nonVisual_4' value='4' class='imageRadio' onclick="nonVisualSelected()">
+                <label class='imageLabel' for='nonVisual_4' id='nonVisualLabel4'>{{nonVisual4}}</label>
+                <i id='checkNonVisual4' class="fas fa-check"></i>
+                <i id='timesNonVisual4' class="fas fa-times"></i>
+                <label id='correctNonVisual4'>Correct</label>
+                <label id='incorrectNonVisual4'>Incorrect</label>
+            </div>
+        </div>
+        <div id="nextNonVisual">
+            <div id="btn-next-page"></div>
+        </div>
+        <script>
+            function nonVisualSelected() {
+                var classOfDiv = parseInt(document.getElementById("nonVisualQ").className);
+                var labelOne = document.getElementById('nonVisualLabel1').textContent
+                var labelTwo = document.getElementById('nonVisualLabel2').textContent
+                var labelThree = document.getElementById('nonVisualLabel3').textContent
+                var labelFour = document.getElementById('nonVisualLabel4').textContent
+                var correctLabelId = ""
+                var correctIconId = ""
+                if(0 == classOfDiv){
+                    correctLabelId = 'nonVisualLabel1'
+                    correctIconId = 'NonVisual1'
+                } else if(1 == classOfDiv) {
+                    correctLabelId = 'nonVisualLabel2'
+                    correctIconId = 'NonVisual2'
+                } else if(2 == classOfDiv) {
+                    correctLabelId = 'nonVisualLabel3'
+                    correctIconId = 'NonVisual3'
+                } else {
+                    correctLabelId = 'nonVisualLabel4'
+                    correctIconId = 'NonVisual4'
+                }
+                var audioIncorrect = new Audio('audio/incorrect.wav');
+                var audioCorrect = new Audio('audio/correct.wav');
+                if (document.getElementById('nonVisual_1').checked) {
+                    if (0 != classOfDiv) {
+                        audioIncorrect.play();
+                        styleWrongAnswer('nonVisualLabel1', 'NonVisual1')
+                    } else {
+                        audioCorrect.play();
+                    }
+                } else if(document.getElementById('nonVisual_2').checked) {
+                    if (1 != classOfDiv) {
+                        audioIncorrect.play();
+                        styleWrongAnswer('nonVisualLabel2', 'NonVisual2')
+                    } else {
+                        audioCorrect.play();
+                    }
+                } else if(document.getElementById('nonVisual_3').checked) {
+                    if (2 != classOfDiv) {
+                        audioIncorrect.play();
+                        styleWrongAnswer('nonVisualLabel3', 'NonVisual3')
+                    } else {
+                        audioCorrect.play();
+                    }
+                } else {
+                    if (3 != classOfDiv) {
+                        audioIncorrect.play();
+                        styleWrongAnswer('nonVisualLabel4', 'NonVisual4')
+                    } else {
+                        audioCorrect.play();
+                    }
+                }
+                $("#nonVisual_1").attr("disabled", true);
+                $("#nonVisual_2").attr("disabled", true);
+                $("#nonVisual_3").attr("disabled", true);
+                $("#nonVisual_4").attr("disabled", true);
+                styleCorrectAnswer(correctLabelId, correctIconId)
+                document.getElementById("nextNonVisual").style.visibility='visible'
+            }
+            function styleCorrectAnswer(labelId, iconId) {
+                var label = document.getElementById(labelId)
+                var icon = document.getElementById('check' + iconId)
+                var text = document.getElementById('correct' + iconId)
+                label.style.border = '3px solid lightgreen'
+                icon.style.display = 'inline'
+                text.style.display = 'inline'
+            }
+            function styleWrongAnswer(labelId, iconId) {
+                var label = document.getElementById(labelId)
+                var icon = document.getElementById('times' + iconId)
+                var text = document.getElementById('incorrect' + iconId)
+                label.style.border = '3px solid lightcoral'
+                icon.style.display = 'inline'
+                text.style.display = 'inline'
+            }
+            $(document).ready(function () {
+                var third = document.getElementById("nonVisualLabel3").textContent
+                var fourth = document.getElementById("nonVisualLabel4").textContent
+                if (third.length < 1) {
+                    document.getElementById("nonVisualLabel3").style.display = 'none'
+                    document.getElementById("nonVisualLabel4").style.display = 'none'
+                }
+            });
+        </script>
+    </body>
+</html>

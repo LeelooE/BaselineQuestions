@@ -1,0 +1,169 @@
+<html>
+    <head></head>
+    <body>        
+        <p id="imgLoad">Loading resources: 0 out of 5 ...</p>
+        <div id="imageQues">
+            <h2>
+                <span><strong>{{pageTitle}}</strong></span>
+            </h2>
+            <h2 id='directions'>
+                <span>You may or may not have seen similar images in your article, 
+                    don't worry if you haven't and give this your best shot.</span>
+                <span>{{imageQuestion}}</span>
+                <span>Click on the image to select an answer.</span>
+                <span>Once you click on an option, you won't be able to change your answer.</span>
+            </h2>
+            <div id="imageQ" class={{rightAnswer}}>
+                <div class='image_buttons'>
+                    <input type='radio' name='image' id='image_1' value='1' class='image_input' onclick="imageSelected()">
+                    <label for='image_1' id='imageLabel1'>
+                        <img src={{imageDistractor1}} width={{distractorWidth}} class='image_in_button' id='first_image'/>
+                    </label>
+                    <i id='checkImage1' class="fas fa-check"></i>
+                    <i id='timesImage1' class="fas fa-times"></i>
+                    <label id='correctImage1'>Correct</label>
+                    <label id='incorrectImage1'>Incorrect</label>
+                </div>
+                <div class='image_buttons'>
+                    <input type='radio' name='image' id='image_2' value='2' class='image_input' onclick="imageSelected()">
+                    <label for='image_2' id='imageLabel2'><img src={{imageDistractor2}} width={{distractorWidth}} class='image_in_button' id='second_image'/></label>
+                    <i id='checkImage2' class="fas fa-check"></i>
+                    <i id='timesImage2' class="fas fa-times"></i>
+                    <label id='correctImage2'>Correct</label>
+                    <label id='incorrectImage2'>Incorrect</label>
+                </div>
+                <div class='image_buttons'>
+                    <input type='radio' name='image' id='image_3' value='3' class='image_input' onclick="imageSelected()">
+                    <label for='image_3' id='imageLabel3'><img src={{imageDistractor3}} width={{distractorWidth}} class='image_in_button' id='third_image'/></label>
+                    <i id='checkImage3' class="fas fa-check"></i>
+                    <i id='timesImage3' class="fas fa-times"></i>
+                    <label id='correctImage3'>Correct</label>
+                    <label id='incorrectImage3'>Incorrect</label>
+                </div>
+                <div class='image_buttons'>
+                    <input type='radio' name='image' id='image_4' value='4' class='image_input' onclick="imageSelected()">
+                    <label for='image_4' id='imageLabel4'><img src={{imageDistractor4}} width={{distractorWidth}} class='image_in_button' id='fourth_image'/></label>
+                    <i id='checkImage4' class="fas fa-check"></i>
+                    <i id='timesImage4' class="fas fa-times"></i>
+                    <label id='correctImage4'>Correct</label>
+                    <label id='incorrectImage4'>Incorrect</label>
+                </div>
+            </div>
+            <div id="nextImage">
+                <div id="btn-next-page"></div>
+            </div>
+        </div>
+        <script>
+            function imageSelected() {
+                var classOfDiv = $("#imageQ").attr('class')
+                var labelOne = document.getElementById('first_image').src
+                var labelTwo = document.getElementById('second_image').src
+                var labelThree = document.getElementById('third_image').src
+                var labelFour = document.getElementById('fourth_image').src
+                var correctLabelId = ""
+                var correctIconId = ""
+                if(labelOne == classOfDiv){
+                    correctLabelId = 'first_image'
+                    correctIconId = 'Image1'
+                } else if(labelTwo == classOfDiv) {
+                    correctLabelId = 'second_image'
+                    correctIconId = 'Image2'
+                } else if(labelThree == classOfDiv) {
+                    correctLabelId = 'third_image'
+                    correctIconId = 'Image3'
+                } else {
+                    correctLabelId = 'fourth_image'
+                    correctIconId = 'Image4'
+                }
+                var audioIncorrect = new Audio('audio/incorrect.wav');
+                var audioCorrect = new Audio('audio/correct.wav');
+                styleCorrectAnswer(correctLabelId, correctIconId)
+                if (document.getElementById('image_1').checked) {
+                    if (labelOne != classOfDiv) {
+                        styleWrongAnswer('first_image', 'Image1')
+                        audioIncorrect.play();
+                    } else {
+                        audioCorrect.play();
+                    }
+                } else if(document.getElementById('image_2').checked) {
+                    if (labelTwo != classOfDiv) {
+                        styleWrongAnswer('second_image', 'Image2')
+                        audioIncorrect.play();
+                    } else {
+                        audioCorrect.play();
+                    }
+                } else if(document.getElementById('image_3').checked) {
+                    if (labelThree != classOfDiv) {
+                        styleWrongAnswer('third_image', 'Image3')
+                        audioIncorrect.play();
+                    } else {
+                        audioCorrect.play();
+                    }
+                } else {
+                    if (labelFour != classOfDiv) {
+                        styleWrongAnswer('fourth_image', 'Image4')
+                        audioIncorrect.play();
+                    } else {
+                        audioCorrect.play();
+                    }
+                }
+                $("#image_1").attr("disabled", true);
+                $("#image_2").attr("disabled", true);
+                $("#image_3").attr("disabled", true);
+                $("#image_4").attr("disabled", true);
+                document.getElementById("nextImage").style.visibility='visible'
+            }
+            function styleCorrectAnswer(labelId, iconId) {
+                var label = document.getElementById(labelId)
+                var icon = document.getElementById('check' + iconId)
+                var text = document.getElementById('correct' + iconId)
+                label.style.border = '10px solid lightgreen'
+                icon.style.display = 'inline'
+                text.style.display = 'inline'
+            }
+            function styleWrongAnswer(labelId, iconId) {
+                var label = document.getElementById(labelId)
+                var icon = document.getElementById('times' + iconId)
+                var text = document.getElementById('incorrect' + iconId)
+                label.style.border = '10px solid lightcoral'
+                icon.style.display = 'inline'
+                text.style.display = 'inline'
+            }
+            function setWidth() {
+                var width = $("#first_image").width() + 25;
+                document.getElementById("imageQ").style.gridTemplateColumns = "repeat(auto-fit, minmax(" + width +"px, auto))";
+            }
+            // function preLoadImage() {
+            //     var distractors = jsPsych.data.getLastTrialData().distractorsImage1
+            //     var myImage = new Image(100, 200);
+            //     myImage.src = distractors[0];
+            //     console.log(myImage);
+            //     document.getElementById("imageLabel1").appendChild(myImage);
+            // }
+            $(document).ready(function () {
+                // preLoadImage();
+                setWidth()
+                var imgs = document.images,
+                len = imgs.length,
+                counter = 0;
+
+                [].forEach.call( imgs, function( img ) {
+                    if(img.complete)
+                    incrementCounter();
+                    else
+                    img.addEventListener( 'load', incrementCounter, false );
+                } );
+
+                function incrementCounter() {
+                    counter++;
+                    document.getElementById("imgLoad").textContent = "Loading resources: " + counter + " out of 5 ...";
+                    if ( counter === len ) {
+                        // console.log( 'All images loaded!' );
+                        document.getElementById("imgLoad").style.visibility='hidden'
+                        document.getElementById("imageQues").style.visibility='visible'
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

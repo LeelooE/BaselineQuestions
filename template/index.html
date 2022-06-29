@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta id="viewport" name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32982292-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-32982292-1');
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title data-i18n='litw-template-title'></title>
+
+    <!-- open graph tags -->
+    <meta property="og:site_name" content="LabintheWild"/>
+    <meta property="og:title" content="What percentage of Wikipedia do you know?"/>
+    <meta property="og:url" content="https://labinthewild.org/studies/wikipedia/"/>
+    <meta property="og:image" content="https://labinthewild.org/studies/wikipedia/img/wikipedia-logo.png"/>
+    <meta property="og:description" content="Take a survey on a few Wikipedia articles to see how well and fast you learn things. This study takes 5 minutes to complete."/>
+
+    <!-- ***** stylesheets ***** -->
+    <!-- bootstrap -->
+    <!-- NOTE(Trevor): for now, include the bootstrap stylesheet here. Including
+    it via webpackcaused other stylesheets linked to here (like litw-styles.css)
+    to be overridden. There's probably a way to do this within webpack, but need
+    to investigate further. -->
+    <link href="css/bootstrap.min-3_3_7.css" rel="stylesheet" type="text/css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+    <!-- if using form autocompletion, include a jQueryUI css template -->
+    <link href="css/jquery-ui-1_12_1.css" rel="stylesheet" type="text/css">
+
+    <!-- jsPsych styles -->
+    <link href="js/jsPsych-5.0.3/css/jspsych.css" rel="stylesheet" type="text/css">
+
+    <!-- LITW base styles -->
+    <link href="css/litw-styles.css" rel="stylesheet" type="text/css">
+    <!-- study-specific styles -->
+		<link href="css/styles.css" rel="stylesheet" type="text/css">
+    
+    <!--D3 link-->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body class="jspsych-display-element">
+<div id="content">
+    <div id="header">
+        <a href='https://www.labinthewild.org'>
+            <img src='img/LITW-logo2020.png' id='logo'
+                 alt='The Lab in the Wild logo showing an Earth globe and the name of the site in green colors.'/>
+        </a>
+        <div class='separator'>&nbsp;</div>
+    </div>
+    <div id="progress-header"></div>
+    <div id="img-loading" class="slide"></div>
+    <div id="irb" class="slide"></div>
+    <div id="instructions" class="slide"></div>
+    <div id="knowledgeQ" class="slide"></div>
+    <div id="prolific" class="slide"></div>
+    <div id="nonVisualQuestion" class="slide"></div>
+    <div id="visualQuestion" class="slide"></div>
+    <div id="imageQuestion" class="slide"></div>
+    <div id="trials" class="slide"></div>
+    <div id="demographics" class="slide"></div>
+    <div id="comments" class="slide"></div>
+    <div id="results" class="slide"></div>
+    <div id="btn-next-page" class="last_button"></div>
+    <div id="ajax-working"></div>
+    <div id="empty" class="slide"></div>
+</div>
+
+
+<!-- LITW modules -->
+<script src="js/litw/litw.utils.0.1.js"></script>
+<script src="js/litw/litw.results.0.1.js"></script>
+<script src="js/litw/litw.share.0.1.js"></script>
+<script src="js/litw/litw.data.1.1.0.js"></script>
+<script src="js/litw/litw.forms.0.1.js"></script>
+<script src="js/litw/litw.tracking.noapi.0.1.js"></script>
+<script src="js/litw/litw.comments.0.1.js"></script>
+<script src="js/litw/litw.locale.0.1.js"></script>
+
+<!-- jspsych -->
+<script src="js/jsPsych-5.0.3/jspsych.js"></script>
+<script src="js/jsPsych-5.0.3/plugins/jspsych-call-function.js"></script>
+<!-- <script src="src/jspsych-single-stim-litw.js"></script> -->
+
+<!-- study code and content -->
+<script src="dist/bundle.min.js?ver=1.0.0"></script>
+<script src="js/jquery.i18n.js" type="text/javascript"></script>
+<script src="js/jquery.i18n.messagestore.js" type="text/javascript"></script>
+</body>
+</html>
