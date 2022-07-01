@@ -291,7 +291,7 @@ module.exports = (function() {
       $("#progress-header").html(progressTemplate({
         msg: C.progressMsg,
         progress: ++params.currentProgress,
-        total: 18
+        total: 11
       }))
       .show();
       LITW.utils.showSlide("trials");
@@ -340,7 +340,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -390,7 +390,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -440,7 +440,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -490,7 +490,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -540,7 +540,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -622,7 +622,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -672,7 +672,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -722,7 +722,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -772,7 +772,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
@@ -822,7 +822,7 @@ module.exports = (function() {
         $("#progress-header").html(progressTemplate({
           msg: C.progressMsg,
           progress: ++params.currentProgress,
-          total: 18
+          total: 11
         }))
         .show();
       }
