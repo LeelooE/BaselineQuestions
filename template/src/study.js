@@ -571,7 +571,6 @@ module.exports = (function() {
         jsPsych.data.addProperties({imageQuestion0Score: testScore});
         jsPsych.data.addProperties({imageQuestion0: qs0.imageQuestion});
 
-        jsPsych.data.addProperties({'totalScore': totalScore});
         uuid = LITW.data.getParticipantId();
         LITW.data.submitStudyData({
           imageQuestion0Complete: true, 
@@ -848,7 +847,7 @@ module.exports = (function() {
         var currentTime = new Date().getTime()
         jsPsych.data.addProperties({imageQuestionFinishTime1: currentTime});
         var testScore = 0
-        if (distractorsImage01[parseInt($("input[name=image]:checked").val()) - 1] == qs1.imageAnswerURL) {
+        if (distractorsImage1[parseInt($("input[name=image]:checked").val()) - 1] == qs1.imageAnswerURL) {
           testScore = 1
         }
         jsPsych.data.addProperties({imageQuestionScore1: testScore});
