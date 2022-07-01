@@ -148,10 +148,22 @@ module.exports = (function() {
     
     // shuffle the given articles
     wikiArticles = LITW.utils.shuffleArrays(params.wikiArticleSamples);
-
+    titles = params.summary.titles;
+    index0 = 0;
+    index1 = 1;
+    if(titles.length > 0){
+      while(true && index1 < 94){
+        if(titles.includes(wikiArticles[index0][1].pageTitle)){
+          index0 = index0 + 1;
+        }
+        if(titles.includes(wikiArticles[index1][1].pageTitle)){
+          index1 = index1 + 1;
+        }
+      }
+    }
     // grab the article
-    var article0 = wikiArticles[3][1];
-    var article1 = wikiArticles[2][1];
+    var article0 = wikiArticles[index0][1];
+    var article1 = wikiArticles[index1][1];
     
     // get the page titles for all three articles
     var pageTitle0 = article0.pageTitle;
@@ -315,6 +327,7 @@ module.exports = (function() {
         jsPsych.data.addProperties({answersImage: qs0.imageAnswerURL});
         jsPsych.data.addProperties({knowledgeOfArticle: $("input[name=knowledge]:checked").val()});
         jsPsych.data.addProperties({titleOfArticle: article0.pageTitle});
+        jsPsych.data.addProperties({titlesSeen: titles});
         var currentTime = new Date().getTime()
         jsPsych.data.addProperties({knowledgeOfArticleTime: currentTime});
         uuid = LITW.data.getParticipantId();
@@ -328,7 +341,8 @@ module.exports = (function() {
           answersImage: qs0.imageAnswerURL,
           knowledgeOfArticle0: $("input[name=knowledge]:checked").val(),
           titleOfArticle0: article0.pageTitle,
-          uuid: uuid
+          uuid: uuid,
+          titlesSeen: titles
         });
       }
     });
