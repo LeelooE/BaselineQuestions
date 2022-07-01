@@ -153,11 +153,17 @@ module.exports = (function() {
     index1 = 1;
     if(titles.length > 0){
       while(true && index1 < 94){
-        if(titles.includes(wikiArticles[index0][1].pageTitle)){
-          index0 = index0 + 1;
-        }
         if(titles.includes(wikiArticles[index1][1].pageTitle)){
           index1 = index1 + 1;
+        } else {
+          break;
+        }
+      }
+      while(true && index0 < 93){
+        if(titles.includes(wikiArticles[index0][1].pageTitle)){
+          index0 = index0 + 1;
+        }else {
+          break;
         }
       }
     }
