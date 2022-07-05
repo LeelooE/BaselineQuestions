@@ -326,16 +326,16 @@ module.exports = (function() {
       name: "knowledgeQuestion",
       template: knowledgeQTemplate({pageTitle: article0.pageTitle}),
       finish: function() {
-        jsPsych.data.addProperties({answersNonVisual1: nonVisualAnswer01});
-        jsPsych.data.addProperties({answersNonVisual2: nonVisualAnswer02});
-        jsPsych.data.addProperties({answersVisual3: visualAnswer03});
-        jsPsych.data.addProperties({answersVisual4: visualAnswer04});
-        jsPsych.data.addProperties({answersImage: qs0.imageAnswerURL});
-        jsPsych.data.addProperties({knowledgeOfArticle: $("input[name=knowledge]:checked").val()});
-        jsPsych.data.addProperties({titleOfArticle: article0.pageTitle});
+        jsPsych.data.addProperties({answersNonVisual01: nonVisualAnswer01});
+        jsPsych.data.addProperties({answersNonVisual02: nonVisualAnswer02});
+        jsPsych.data.addProperties({answersVisual03: visualAnswer03});
+        jsPsych.data.addProperties({answersVisual04: visualAnswer04});
+        jsPsych.data.addProperties({answersImage0: qs0.imageAnswerURL});
+        jsPsych.data.addProperties({knowledgeOfArticle0: $("input[name=knowledge]:checked").val()});
+        jsPsych.data.addProperties({titleOfArticle0: article0.pageTitle});
         jsPsych.data.addProperties({titlesSeen: titles});
         var currentTime = new Date().getTime()
-        jsPsych.data.addProperties({knowledgeOfArticleTime: currentTime});
+        jsPsych.data.addProperties({knowledgeOfArticleTime0: currentTime});
         uuid = LITW.data.getParticipantId();
         LITW.data.submitStudyData({
           knowledgeOfArticle0Time: currentTime, 
@@ -344,7 +344,7 @@ module.exports = (function() {
           answersNonVisual02: nonVisualAnswer02,
           answersVisual03: visualAnswer03,
           answersVisual04: visualAnswer04,
-          answersImage: qs0.imageAnswerURL,
+          answersImage0: qs0.imageAnswerURL,
           knowledgeOfArticle0: $("input[name=knowledge]:checked").val(),
           titleOfArticle0: article0.pageTitle,
           uuid: uuid,
@@ -878,7 +878,7 @@ module.exports = (function() {
         surveyTotalTime = ((surveyTotalTime / 1000 ) / 60)
         surveyTotalTime = Math.round(surveyTotalTime * 10) / 10
         var totalScore = studyData1.imageQuestionScore1 + studyData1.visualQuestion14Score + studyData1.visualQuestion13Score + studyData1.nonVisualQuestion11Score + studyData1.nonVisualQuestion12Score +
-                          studyData1.imageQuestionScore0 + studyData1.visualQuestion04Score + studyData1.visualQuestion03Score + studyData1.nonVisualQuestion01Score + studyData1.nonVisualQuestion02Score;
+                          studyData1.imageQuestion0Score + studyData1.visualQuestion04Score + studyData1.visualQuestion03Score + studyData1.nonVisualQuestion01Score + studyData1.nonVisualQuestion02Score;
         jsPsych.data.addProperties({'surveyTimeTotal': surveyTotalTime});
         jsPsych.data.addProperties({'totalScore': totalScore});
         uuid = LITW.data.getParticipantId();

@@ -5,16 +5,16 @@ function summary($json_data) {
 	$data = json_decode($json_data,true);
 	$val = 0;
 	$titles = "";
-	
+	$space = "_";
 	foreach ($data as $value) {
 
 		if(array_key_exists('titleOfArticle0', $value)) {
-			$titles = $titles + "_" + $value['titleOfArticle0'] + "_";
+			$titles = $titles.$space.$value['titleOfArticle0'].$space;
 			
 		}
 
 		if(array_key_exists('titleOfArticle1', $value)) {
-			$titles = $titles + "_" + $value['titleOfArticle1'] + "_";
+			$titles = $titles.$space.$value['titleOfArticle1'].$space;
 			
 		}
 	}
