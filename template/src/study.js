@@ -337,6 +337,7 @@ module.exports = (function() {
         var currentTime = new Date().getTime()
         jsPsych.data.addProperties({knowledgeOfArticleTime0: currentTime});
         uuid = LITW.data.getParticipantId();
+        var studyData = jsPsych.data.getLastTrialData()
         LITW.data.submitStudyData({
           knowledgeOfArticle0Time: currentTime, 
           knowledgeofArticle0Complete: true,
@@ -347,6 +348,7 @@ module.exports = (function() {
           answersImage0: qs0.imageAnswerURL,
           knowledgeOfArticle0: $("input[name=knowledge]:checked").val(),
           titleOfArticle0: article0.pageTitle,
+          prolificID: studyData.prolificID,
           uuid: uuid,
           titlesSeen: titles
         });
@@ -620,6 +622,7 @@ module.exports = (function() {
         var currentTime = new Date().getTime()
         jsPsych.data.addProperties({knowledgeOfArticleTime1: currentTime});
         uuid = LITW.data.getParticipantId();
+        var studyData = jsPsych.data.getLastTrialData()
         LITW.data.submitStudyData({
           knowledgeOfArticle1Time: currentTime, 
           knowledgeofArticle1Complete: true,
@@ -630,6 +633,7 @@ module.exports = (function() {
           answersImage1: qs1.imageAnswerURL,
           knowledgeOfArticle1: $("input[name=knowledge]:checked").val(),
           titleOfArticle1: article1.pageTitle,
+          prolificID: studyData.prolificID,
           uuid: uuid
         });
       }

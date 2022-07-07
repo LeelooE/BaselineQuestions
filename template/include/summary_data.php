@@ -14,8 +14,9 @@ function summary($json_data) {
 				if (strcmp($value['prolificID'],$test_id) !== 0) {
 					$titles = $titles.$space.$value['titleOfArticle0'].$space;
 				}
+			} else {
+				$titles = $titles.$space.$value['titleOfArticle0'].$space;
 			}
-			
 		}
 
 		if(array_key_exists('titleOfArticle1', $value)) {
@@ -23,8 +24,9 @@ function summary($json_data) {
 				if (strcmp($value['prolificID'],$test_id) !== 0) {
 					$titles = $titles.$space.$value['titleOfArticle1'].$space;
 				}	
+			} else {
+				$titles = $titles.$space.$value['titleOfArticle1'].$space;
 			}
-			
 		}
 	}
 	
