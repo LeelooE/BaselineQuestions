@@ -102,6 +102,7 @@ module.exports = (function() {
       jsPsych.data.addProperties({prevPID: LITW.data.getURLparams()});
       uuid = LITW.data.getParticipantId();
       prevPID = LITW.data.getURLparams()["LITW_PID"]
+      jsPsych.data.addProperties({articleNum: LITW.data.getURLparams()["ARTICLE_ID"]});
       LITW.data.submitStudyData({
         irbComplete: true,
         studyStartTime: start,
@@ -109,6 +110,7 @@ module.exports = (function() {
         userDeviceSm: navigator.userAgent.substr(navigator.userAgent.indexOf('('), navigator.userAgent.indexOf(';')),
         mobile: /Mobi|Android/i.test(navigator.userAgent),
         prevPID: prevPID,
+        articleNum: articleNum,
         uuid: uuid
       });
     });
@@ -144,30 +146,17 @@ module.exports = (function() {
   initJsPsych = function() {
     // ******* BEGIN STUDY PROGRESSION ******** //
 
+    var articleNum = LITW.data.getURLparams()["ARTICLE_ID"]
+    console.log(articleNum)
+
     // A few articles for results page
     
     // shuffle the given articles
-    wikiArticles = LITW.utils.shuffleArrays(params.wikiArticleSamples);
-    titles = params.summary.titles;
-    index0 = 0;
-    index1 = 1;
-    if(titles.length > 0){
-      while(true && index0 < 93){
-        if(titles.includes(wikiArticles[index0][1].pageTitle)){
-          index0 = index0 + 1;
-        }else {
-          break;
-        }
-      }
-      index1 = index0 + 1;
-      while(true && index1 < 94){
-        if(titles.includes(wikiArticles[index1][1].pageTitle)){
-          index1 = index1 + 1;
-        } else {
-          break;
-        }
-      }
-    }
+    wikiArticles = params.wikiArticleSamples;
+    // titles = params.summary.titles;
+    var getArticleNum = parseInt(articleNum);
+    index0 = getArticleNum;
+    index1 = getArticleNum+1;
     // grab the article
     var article0 = wikiArticles[index0][1];
     var article1 = wikiArticles[index1][1];
@@ -334,13 +323,12 @@ module.exports = (function() {
         jsPsych.data.addProperties({answersImage0: qs0.imageAnswerURL});
         jsPsych.data.addProperties({knowledgeOfArticle0: $("input[name=knowledge]:checked").val()});
         jsPsych.data.addProperties({titleOfArticle0: article0.pageTitle});
-        jsPsych.data.addProperties({titlesSeen: params.summary.titles});
         var currentTime = new Date().getTime()
         jsPsych.data.addProperties({knowledgeOfArticleTime0: currentTime});
         uuid = LITW.data.getParticipantId();
         var studyData = jsPsych.data.getLastTrialData()
         jsPsych.data.addProperties({prolificID: studyData.prolificID});
-        console.log(params.summary.titles)
+        console.log(article0.pageTitle)
         LITW.data.submitStudyData({
           knowledgeOfArticle0Time: currentTime, 
           knowledgeofArticle0Complete: true,
@@ -353,7 +341,6 @@ module.exports = (function() {
           prolificID: studyData.prolificID,
           titleOfArticle0: article0.pageTitle,
           uuid: uuid,
-          titlesSeen: params.summary.titles
         });
       }
     });
