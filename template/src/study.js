@@ -152,17 +152,18 @@ module.exports = (function() {
     index0 = 0;
     index1 = 1;
     if(titles.length > 0){
-      while(true && index1 < 94){
-        if(titles.includes(wikiArticles[index1][1].pageTitle)){
-          index1 = index1 + 1;
-        } else {
-          break;
-        }
-      }
       while(true && index0 < 93){
         if(titles.includes(wikiArticles[index0][1].pageTitle)){
           index0 = index0 + 1;
         }else {
+          break;
+        }
+      }
+      index1 = index0 + 1;
+      while(true && index1 < 94){
+        if(titles.includes(wikiArticles[index1][1].pageTitle)){
+          index1 = index1 + 1;
+        } else {
           break;
         }
       }
@@ -338,6 +339,7 @@ module.exports = (function() {
         jsPsych.data.addProperties({knowledgeOfArticleTime0: currentTime});
         uuid = LITW.data.getParticipantId();
         var studyData = jsPsych.data.getLastTrialData()
+        jsPsych.data.addProperties({prolificID: studyData.prolificID});
         console.log(params.summary.titles)
         LITW.data.submitStudyData({
           knowledgeOfArticle0Time: currentTime, 
@@ -348,6 +350,7 @@ module.exports = (function() {
           answersVisual04: visualAnswer04,
           answersImage0: qs0.imageAnswerURL,
           knowledgeOfArticle0: $("input[name=knowledge]:checked").val(),
+          prolificID: studyData.prolificID,
           titleOfArticle0: article0.pageTitle,
           uuid: uuid,
           titlesSeen: params.summary.titles
@@ -623,6 +626,7 @@ module.exports = (function() {
         jsPsych.data.addProperties({knowledgeOfArticleTime1: currentTime});
         uuid = LITW.data.getParticipantId();
         var studyData = jsPsych.data.getLastTrialData()
+        jsPsych.data.addProperties({prolificID: studyData.prolificID});
         LITW.data.submitStudyData({
           knowledgeOfArticle1Time: currentTime, 
           knowledgeofArticle1Complete: true,
@@ -631,6 +635,7 @@ module.exports = (function() {
           answersVisual13: visualAnswer13,
           answersVisual14: visualAnswer14,
           answersImage1: qs1.imageAnswerURL,
+          prolificID: studyData.prolificID,
           knowledgeOfArticle1: $("input[name=knowledge]:checked").val(),
           titleOfArticle1: article1.pageTitle,
           uuid: uuid

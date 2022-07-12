@@ -10,11 +10,23 @@ function summary($json_data) {
 	foreach ($data as $value) {
 
 		if(array_key_exists('titleOfArticle0', $value)) {
-			$titles = $titles.$space.$value['titleOfArticle0'].$space;
+			if (array_key_exists('prolificID', $value)) {
+				if (strcmp($value['prolificID'],$test_id) !== 0) {
+					$titles = $titles.$space.$value['titleOfArticle0'].$space;
+				}
+			} else {
+				$titles = $titles.$space.$value['titleOfArticle0'].$space;
+			}
 		}
 
 		if(array_key_exists('titleOfArticle1', $value)) {
-			$titles = $titles.$space.$value['titleOfArticle1'].$space;
+			if (array_key_exists('prolificID', $value)) {
+				if (strcmp($value['prolificID'],$test_id) !== 0) {
+					$titles = $titles.$space.$value['titleOfArticle1'].$space;
+				}	
+			} else {
+				$titles = $titles.$space.$value['titleOfArticle1'].$space;
+			}
 		}
 	}
 	
